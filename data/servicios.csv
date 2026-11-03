@@ -1,0 +1,7 @@
+id,categoria,empresa,codigo_convenio,descripcion
+SRV-01,Electricidad,Empresa Eléctrica de Guatemala (EEGSA),EEGSA-01,Suministro eléctrico metropolitano
+SRV-02,Electricidad,Energuate (DEOCSA / DEORSA),ENERG-02,Distribución eléctrica departamental
+SRV-03,Agua Potable,Empresa Municipal de Agua (EMPAGUA),EMPA-01,Cobro de agua potable y saneamiento
+SRV-04,Telefonía e Internet,Tigo Guatemala,TIGO-01,Planes móviles, prepago y residencial
+SRV-05,Telefonía e Internet,Claro Guatemala,CLR-02,Telefonía móvil y fibra óptica
+SRV-06,Tarjeta de Crédito,Tarjeta BAC Credomatic Visa / Mastercard,BAC-TC,Pago de tarjeta de crédito BAC

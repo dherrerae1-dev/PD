@@ -1,0 +1,7 @@
+id,usuario,numero_cuenta,tipo_cuenta,titular,cedula,correo,telefono,saldo,moneda,pin
+1,admin,GT0501020000000000001,Cuenta Administrativa BAC,Administrador General BAC,00000000,admin@baccredomatic.com,22959898,999999.00,GTQ,1234
+2,amorales,GT0501020000987654321,Cuenta Monetaria BAC,Alejandro Morales Salazar,18450921,alejandro.morales@baccredomatic.com,55443322,4850.50,GTQ,1234
+3,mrojas,GT0501020000123456789,Cuenta de Ahorros Total,María Fernanda Rojas Solano,09820345,maria.rojas@gmail.com,57112233,18500.00,GTQ,4321
+4,cvargas,GT0501020000554433221,Cuenta en Dólares BAC,Carlos Andrés Vargas Soto,204560789,carlos.vargas@empresa.com,50123456,1250.00,USD,9988
+5,dherrera,GT0501020000253514146,Cuenta Monetaria Total,Diego Herrera,2548198740101,dherrerae1@miumg.edu.gt,55667788,100.00,GTQ,1234
+6,danna.morales,GT0501020000574300123,Cuenta Monetaria BAC,Danna Gimena Morales Arzu,301298450101,danna.morales@correo.com,55998877,250.00,GTQ,1234

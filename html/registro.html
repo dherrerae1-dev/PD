@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Clientes | BAC Credomatic</title>
+  <link rel="icon" type="image/jpeg" href="../imas/elemento_11.jpg">
+  <link rel="apple-touch-icon" href="../imas/elemento_11.jpg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/animated.css">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+  <!-- Navegación superior -->
+  <header class="bac-navbar">
+    <div class="container d-flex align-items-center justify-content-between">
+      <a href="../index.html" class="d-flex align-items-center">
+        <img src="../imas/logo_sinfondo.png" alt="BAC Credomatic" class="brand-logo">
+      </a>
+      <div class="d-flex align-items-center gap-2">
+        <a href="../index.html" class="bac-nav-link">
+          <span class="svg-icon"><img src="../svg/home.svg" alt="Inicio"></span>
+          <span>Inicio</span>
+        </a>
+        <a href="banca.html" class="uiverse-btn-outline uiverse-btn-sm">
+          <span class="svg-icon"><img src="../svg/lock.svg" alt="Banca"></span>
+          <span>Banca en Línea</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenido principal -->
+  <main class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-xl-7">
+
+          <!-- Formulario de registro -->
+          <div id="formSection" class="uiverse-card p-4 p-md-5 animate__animated animate__fadeIn">
+            <div class="border-bottom pb-3 mb-4">
+              <h1 class="h3 fw-bold text-dark mb-1">Registro de Nuevos Clientes</h1>
+              <p class="text-muted small mb-0">
+                Complete el siguiente formulario con sus datos personales para aperturar su cuenta en BAC Credomatic.
+              </p>
+            </div>
+
+            <div id="alertContainer" class="d-none"></div>
+
+            <form id="registroForm">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="uiverse-input-group">
+                    <label for="regTitular">Nombre Completo</label>
+                    <input type="text" id="regTitular" class="uiverse-input" placeholder="Ej. Danna Morales" required>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="uiverse-input-group">
+                    <label for="regUsuario">Usuario (para ingresar a la Banca en Línea)</label>
+                    <input type="text" id="regUsuario" class="uiverse-input" placeholder="Ej. danna.morales" required>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="uiverse-input-group">
+                    <label for="regCedula">DPI o Documento de Identidad</label>
+                    <input type="text" id="regCedula" class="uiverse-input" placeholder="Ej. 2548 19874 0101" required>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="uiverse-input-group">
+                    <label for="regTelefono">Número Telefónico</label>
+                    <input type="tel" id="regTelefono" class="uiverse-input" placeholder="Ej. 5566-7788" required>
+                  </div>
+                </div>
+
+                <div class="col-md-12">
+                  <div class="uiverse-input-group">
+                    <label for="regCorreo">Correo Electrónico</label>
+                    <input type="email" id="regCorreo" class="uiverse-input" placeholder="nombre@correo.com" required>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="uiverse-input-group">
+                    <label for="regTipoCuenta">Tipo de Cuenta a Solicitar</label>
+                    <select id="regTipoCuenta" class="uiverse-input" required>
+                      <option value="Cuenta Monetaria BAC" selected>Cuenta Monetaria BAC</option>
+                      <option value="Cuenta de Ahorros Total">Cuenta de Ahorros Total</option>
+                      <option value="Cuenta Planilla BAC">Cuenta Planilla BAC</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="uiverse-input-group">
+                    <label for="regMoneda">Moneda Principal</label>
+                    <select id="regMoneda" class="uiverse-input" required>
+                      <option value="GTQ" selected>Quetzales (Q - GTQ)</option>
+                      <option value="USD">Dólares ($ - USD)</option>
+                      <option value="CRC">Colones (₡ - CRC)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-md-12">
+                  <div class="uiverse-input-group">
+                    <label for="regDeposito">Monto de Depósito Inicial para Apertura</label>
+                    <input type="number" id="regDeposito" class="uiverse-input" min="0" step="0.01" value="100.00" required>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="uiverse-input-group">
+                    <label for="regPin">PIN de Seguridad (4 a 6 dígitos)</label>
+                    <input type="password" id="regPin" class="uiverse-input" placeholder="••••" maxlength="6" required>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="uiverse-input-group">
+                    <label for="regPinConfirm">Confirmar PIN</label>
+                    <input type="password" id="regPinConfirm" class="uiverse-input" placeholder="••••" maxlength="6" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="pt-3 border-top mt-2">
+                <button type="submit" class="uiverse-btn-primary w-100">
+                  <span class="svg-icon"><img src="../svg/check.svg" alt="Confirmar"></span>
+                  <span>Registrar Cliente y Abrir Cuenta</span>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Vista de confirmación con datos registrados -->
+          <div id="confirmationSection" class="uiverse-card p-4 p-md-5 d-none">
+            <div class="text-center mb-4">
+              <span class="svg-icon icon-primary icon-lg mb-2">
+                <img src="../svg/check.svg" alt="Exitoso">
+              </span>
+              <h2 class="h3 fw-bold text-dark">Registro Completado con Éxito</h2>
+              <p class="text-muted small">
+                Su cuenta ha sido creada y registrada en la base de datos CSV de BAC Credomatic.
+              </p>
+            </div>
+
+            <div class="bac-receipt mb-4">
+              <div class="bac-receipt-row">
+                <span class="text-muted">Usuario Asignado:</span>
+                <span class="fw-bold text-danger fs-6" id="confUsuario">-</span>
+              </div>
+              <div class="bac-receipt-row">
+                <span class="text-muted">Titular de la Cuenta:</span>
+                <span class="fw-semibold text-dark" id="confTitular">-</span>
+              </div>
+              <div class="bac-receipt-row">
+                <span class="text-muted">Identificación / Cédula:</span>
+                <span class="fw-semibold text-dark" id="confCedula">-</span>
+              </div>
+              <div class="bac-receipt-row">
+                <span class="text-muted">Número de Cuenta IBAN:</span>
+                <span class="fw-bold text-dark" id="confNumeroCuenta">-</span>
+              </div>
+              <div class="bac-receipt-row">
+                <span class="text-muted">Tipo de Cuenta:</span>
+                <span class="fw-semibold text-dark" id="confTipoCuenta">-</span>
+              </div>
+              <div class="bac-receipt-row">
+                <span class="text-muted">Moneda:</span>
+                <span class="fw-semibold text-dark" id="confMoneda">-</span>
+              </div>
+              <div class="bac-receipt-row">
+                <span class="text-muted">Saldo Inicial Disponible:</span>
+                <span class="fw-bold text-success" id="confSaldo">-</span>
+              </div>
+              <div class="bac-receipt-row">
+                <span class="text-muted">Correo Registrado:</span>
+                <span class="fw-semibold text-dark" id="confCorreo">-</span>
+              </div>
+              <div class="bac-receipt-row">
+                <span class="text-muted">Teléfono de Contacto:</span>
+                <span class="fw-semibold text-dark" id="confTelefono">-</span>
+              </div>
+            </div>
+
+            <div class="d-flex flex-column flex-sm-row gap-3">
+              <button type="button" id="btnAccederBanca" class="uiverse-btn-primary flex-grow-1">
+                <span class="svg-icon"><img src="../svg/lock.svg" alt="Acceso"></span>
+                <span>Acceder a Mi Cuenta</span>
+              </button>
+              <button type="button" id="btnDescargarMiCuenta" class="uiverse-btn-outline">
+                <span class="svg-icon"><img src="../svg/download.svg" alt="Descargar"></span>
+                <span>Descargar Mi Comprobante</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bac-footer">
+    <div class="container text-center text-muted small">
+      &copy; 2026 BAC Credomatic. Registro Oficial de Cuentas y Banca Digital.
+    </div>
+  </footer>
+
+  <script src="../js/db.js"></script>
+  <script src="../js/registro.js"></script>
+</body>
+</html>

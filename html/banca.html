@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banca en Línea | BAC Credomatic</title>
+  <link rel="icon" type="image/jpeg" href="../imas/elemento_11.jpg">
+  <link rel="apple-touch-icon" href="../imas/elemento_11.jpg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/animated.css">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+  <!-- Barra de Navegación de la Banca en Línea -->
+  <header class="bac-navbar">
+    <div class="container d-flex flex-wrap align-items-center justify-content-between gap-3">
+      <div class="d-flex align-items-center gap-3">
+        <a href="../index.html">
+          <img src="../imas/logo_sinfondo.png" alt="BAC Credomatic" class="brand-logo">
+        </a>
+      </div>
+
+      <div class="d-flex align-items-center gap-3">
+        <div class="d-none d-md-block text-end">
+          <div class="small text-muted">Sesión Activa:</div>
+          <div class="fw-bold text-dark" id="userGreeting">-</div>
+        </div>
+
+        <button type="button" id="btnCerrarSesion" class="uiverse-btn-outline uiverse-btn-sm">
+          <span class="svg-icon"><img src="../svg/logout.svg" alt="Salir"></span>
+          <span>Cerrar Sesión</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="py-4">
+    <div class="container">
+
+      <!-- Encabezado y Selector Exclusivo para Administrador -->
+      <div class="row align-items-center g-3 mb-4">
+        <div class="col-md-7" id="panelHeaderCol">
+          <h1 class="h4 fw-bold text-dark mb-1">Banca en Línea</h1>
+          <p class="text-muted small mb-0">Consulte saldos, efectúe transferencias, liquide servicios y genere su estado de cuenta.</p>
+        </div>
+        <div class="col-md-5 d-none" id="adminAccountSelectorCol">
+          <label for="accountSelector" class="form-label small fw-semibold text-danger mb-1">
+            <span class="svg-icon icon-sm"><img src="../svg/shield.svg" alt="Admin"></span>
+            Panel de Administrador (Cambiar Cuenta):
+          </label>
+          <select id="accountSelector" class="uiverse-select"></select>
+        </div>
+      </div>
+
+      <!-- Tarjeta de Saldo y Resumen de Cuenta -->
+      <div class="row g-4 mb-4">
+        <div class="col-lg-6">
+          <div id="bacCardPreview" class="bac-card-display red">
+            <div class="d-flex justify-content-between align-items-start">
+              <span class="bac-card-chip"></span>
+              <img src="../imas/logo_sinfondo.png" alt="BAC" style="height: 24px; filter: brightness(0) invert(1);">
+            </div>
+            <div class="my-3">
+              <div class="text-white-50 small mb-1">Saldo Disponible</div>
+              <div class="display-6 fw-bold text-white text-nowrap" id="displaySaldo">Q 0.00</div>
+            </div>
+            <div>
+              <div class="d-flex justify-content-between align-items-end">
+                <div>
+                  <div class="small text-white-50" id="displayTipoCuenta">Cuenta Monetaria</div>
+                  <div class="fw-semibold text-white tracking-wide" id="displayTitular">-</div>
+                </div>
+                <div class="text-end">
+                  <div class="small text-white-50">Número IBAN</div>
+                  <div class="font-monospace small text-white" id="displayNumeroCuenta">-</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="row g-3 h-100">
+            <div class="col-sm-6">
+              <div class="uiverse-card p-3 h-100 d-flex flex-column justify-content-between">
+                <div>
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="text-muted small">Ingresos del Período</span>
+                    <span class="svg-icon icon-sm text-success"><img src="../svg/arrow-down-left.svg" alt="Ingresos"></span>
+                  </div>
+                  <div class="h4 fw-bold text-success mb-0" id="displayTotalIngresos">Q 0.00</div>
+                </div>
+                <div class="text-muted small mt-2">Acreditaciones y depósitos registrados en cuenta.</div>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="uiverse-card p-3 h-100 d-flex flex-column justify-content-between">
+                <div>
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="text-muted small">Egresos y Pagos</span>
+                    <span class="svg-icon icon-sm text-danger"><img src="../svg/arrow-up-right.svg" alt="Egresos"></span>
+                  </div>
+                  <div class="h4 fw-bold text-danger mb-0" id="displayTotalEgresos">Q 0.00</div>
+                </div>
+                <div class="text-muted small mt-2">Transferencias salientes y pagos de servicios.</div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="uiverse-card p-3 d-flex flex-wrap align-items-center justify-content-between gap-2">
+                <div class="d-flex align-items-center gap-2">
+                  <span class="svg-icon icon-primary"><img src="../svg/shield.svg" alt="Seguridad"></span>
+                  <div class="small">
+                    <span class="fw-semibold text-dark">Usuario: </span>
+                    <span class="text-danger fw-bold" id="displayUsuario">-</span>
+                    <span class="mx-2 text-muted">|</span>
+                    <span class="fw-semibold text-dark">Identificación: </span>
+                    <span class="text-muted" id="displayCedula">-</span>
+                  </div>
+                </div>
+                <button type="button" id="btnExportarMiCuenta" class="uiverse-btn-outline uiverse-btn-sm">
+                  <span class="svg-icon"><img src="../svg/download.svg" alt="CSV"></span>
+                  <span>Exportar Mis Datos (CSV)</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Barra de Pestañas / Módulos centrada -->
+      <nav class="bac-tabs-nav">
+        <button type="button" class="bac-tab-btn active" data-tab="movimientos">
+          <span class="svg-icon"><img src="../svg/card.svg" alt="Movimientos"></span>
+          <span>Movimientos</span>
+        </button>
+        <button type="button" class="bac-tab-btn" data-tab="transferencias">
+          <span class="svg-icon"><img src="../svg/transfer.svg" alt="Transferencias"></span>
+          <span>Transferencias</span>
+        </button>
+        <button type="button" class="bac-tab-btn" data-tab="servicios">
+          <span class="svg-icon"><img src="../svg/bill.svg" alt="Servicios"></span>
+          <span>Pago de Servicios</span>
+        </button>
+        <button type="button" class="bac-tab-btn" data-tab="estado">
+          <span class="svg-icon"><img src="../svg/statement.svg" alt="Estado"></span>
+          <span>Estado de Cuenta</span>
+        </button>
+        <button type="button" class="bac-tab-btn d-none" data-tab="database" id="tabAdminDatabase">
+          <span class="svg-icon"><img src="../svg/database.svg" alt="Base de Datos"></span>
+          <span>Base de Datos Cloud & CSV (Admin)</span>
+        </button>
+      </nav>
+
+      <!-- Panel 1: MOVIMIENTOS -->
+      <section id="panel-movimientos" class="tab-content-panel">
+        <div class="uiverse-card p-4">
+          <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3 pb-3 border-bottom">
+            <div>
+              <h2 class="h5 fw-bold text-dark mb-0">Últimos Movimientos Registrados</h2>
+              <small class="text-muted">Historial de depósitos, retiros, transferencias y pagos en tiempo real.</small>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <input type="text" id="searchMovimiento" class="uiverse-input form-control-sm" placeholder="Buscar concepto o referencia..." style="width: 250px;">
+              <select id="filterTipoMovimiento" class="uiverse-select" style="width: 150px;">
+                <option value="todos">Todos</option>
+                <option value="crédito">Créditos (+)</option>
+                <option value="débito">Débitos (-)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="bac-table-container">
+            <div class="table-responsive">
+              <table class="table bac-table align-middle">
+                <thead>
+                  <tr>
+                    <th>Fecha y Hora</th>
+                    <th>Concepto / Referencia</th>
+                    <th>Tipo</th>
+                    <th>Categoría</th>
+                    <th class="text-nowrap">Monto</th>
+                    <th class="text-nowrap">Saldo Posterior</th>
+                  </tr>
+                </thead>
+                <tbody id="movimientosTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Panel 2: TRANSFERENCIAS -->
+      <section id="panel-transferencias" class="tab-content-panel d-none">
+        <div class="row g-4">
+          <div class="col-lg-7">
+            <div class="uiverse-card p-4">
+              <div class="border-bottom pb-3 mb-3">
+                <h2 class="h5 fw-bold text-dark mb-1">Transferencias Bancarias</h2>
+                <small class="text-muted">Envíe fondos verificando el saldo disponible en tiempo real.</small>
+              </div>
+
+              <div id="transferFeedback" class="d-none"></div>
+
+              <form id="transferForm">
+                <div class="uiverse-input-group">
+                  <label for="tfDestino">Cuenta Bancaria de Destino (IBAN o BAC)</label>
+                  <input type="text" id="tfDestino" class="uiverse-input" placeholder="Ej. GT0501020000123456789" required>
+                  <small class="text-muted">Cuentas BAC se acreditan de forma inmediata.</small>
+                </div>
+
+                <div class="uiverse-input-group">
+                  <label for="tfBeneficiario">Nombre Completo del Beneficiario</label>
+                  <input type="text" id="tfBeneficiario" class="uiverse-input" placeholder="Ej. María Fernanda Rojas" required>
+                </div>
+
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <div class="uiverse-input-group">
+                      <label for="tfMonto">Monto a Transferir</label>
+                      <input type="number" id="tfMonto" class="uiverse-input" min="0.01" step="0.01" placeholder="0.00" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="uiverse-input-group">
+                      <label for="tfMotivo">Motivo o Concepto</label>
+                      <input type="text" id="tfMotivo" class="uiverse-input" placeholder="Ej. Pago de factura" required>
+                    </div>
+                  </div>
+                </div>
+
+                <button type="submit" class="uiverse-btn-primary w-100 mt-2">
+                  <span class="svg-icon"><img src="../svg/transfer.svg" alt="Transferir"></span>
+                  <span>Comprobar Saldo y Transferir Fondos</span>
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <div class="col-lg-5">
+            <div id="transferVoucher" class="d-none"></div>
+            <div class="uiverse-card p-4">
+              <h3 class="h6 fw-bold text-dark mb-3">Recomendaciones de Seguridad</h3>
+              <ul class="text-muted small ps-3 mb-0">
+                <li class="mb-2">Verifique siempre el número de cuenta y el titular antes de confirmar.</li>
+                <li class="mb-2">Los fondos son debitados de forma instantánea de su saldo disponible.</li>
+                <li class="mb-2">Se genera un número único de referencia para rastreo oficial.</li>
+                <li>Operación registrada directamente en la base de datos CSV.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Panel 3: PAGO DE SERVICIOS -->
+      <section id="panel-servicios" class="tab-content-panel d-none">
+        <div class="row g-4">
+          <div class="col-lg-7">
+            <div class="uiverse-card p-4">
+              <div class="border-bottom pb-3 mb-3">
+                <h2 class="h5 fw-bold text-dark mb-1">Pago de Servicios</h2>
+                <small class="text-muted">Cancele recibos de telefonía, agua, electricidad y tarjetas en tiempo real.</small>
+              </div>
+
+              <div id="serviciosFeedback" class="d-none"></div>
+
+              <form id="serviciosForm">
+                <div class="uiverse-input-group">
+                  <label for="srvCategoria">Categoría del Servicio</label>
+                  <select id="srvCategoria" class="uiverse-select" required>
+                    <option value="Electricidad">Electricidad</option>
+                    <option value="Agua Potable">Agua Potable</option>
+                    <option value="Telefonía e Internet">Telefonía e Internet</option>
+                    <option value="Tarjeta de Crédito">Tarjeta de Crédito BAC</option>
+                  </select>
+                </div>
+
+                <div class="uiverse-input-group">
+                  <label for="srvEmpresa">Empresa / Convenio</label>
+                  <select id="srvEmpresa" class="uiverse-select" required></select>
+                </div>
+
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <div class="uiverse-input-group">
+                      <label for="srvContrato">Número de Servicio / NIS / Teléfono</label>
+                      <input type="text" id="srvContrato" class="uiverse-input" placeholder="Ej. 100234567" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="uiverse-input-group">
+                      <label for="srvMonto">Monto de la Factura</label>
+                      <input type="number" id="srvMonto" class="uiverse-input" min="0.01" step="0.01" placeholder="0.00" required>
+                    </div>
+                  </div>
+                </div>
+
+                <button type="submit" class="uiverse-btn-primary w-100 mt-2">
+                  <span class="svg-icon"><img src="../svg/bill.svg" alt="Pagar"></span>
+                  <span>Verificar Saldo y Aplicar Pago</span>
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <div class="col-lg-5">
+            <div id="serviciosVoucher" class="d-none"></div>
+            <div class="uiverse-card p-4">
+              <h3 class="h6 fw-bold text-dark mb-3">Convenios Disponibles en Guatemala</h3>
+              <p class="text-muted small mb-3">Servicios integrados en la red de recaudación de BAC Credomatic:</p>
+              <div class="d-flex flex-column gap-2 text-muted small">
+                <div class="d-flex align-items-center gap-2">
+                  <span class="svg-icon icon-sm text-primary"><img src="../svg/power.svg" alt="Luz"></span>
+                  <span>Electricidad: EEGSA, Energuate</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                  <span class="svg-icon icon-sm text-primary"><img src="../svg/water.svg" alt="Agua"></span>
+                  <span>Agua Potable: EMPAGUA</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                  <span class="svg-icon icon-sm text-primary"><img src="../svg/phone.svg" alt="Teléfono"></span>
+                  <span>Telefonía / Internet: Tigo Guatemala, Claro</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                  <span class="svg-icon icon-sm text-primary"><img src="../svg/card.svg" alt="Tarjeta"></span>
+                  <span>Tarjetas BAC Credomatic Visa / Mastercard</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Panel 4: ESTADO DE CUENTA -->
+      <section id="panel-estado" class="tab-content-panel d-none">
+        <div class="uiverse-card p-4 mb-4">
+          <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+            <div>
+              <h2 class="h5 fw-bold text-dark mb-0">Generador de Estado de Cuenta</h2>
+              <small class="text-muted">Emita y descargue su informe financiero consolidado para el período seleccionado.</small>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <select id="periodoEstado" class="uiverse-select" style="width: 230px;">
+                <option value="mes_actual">Mes Actual (Octubre - Noviembre 2026)</option>
+                <option value="mes_anterior">Mes Anterior (Septiembre 2026)</option>
+                <option value="trimestre">Últimos 3 Meses</option>
+              </select>
+              <button type="button" id="btnGenerarEstado" class="uiverse-btn-primary uiverse-btn-sm">
+                <span class="svg-icon"><img src="../svg/refresh.svg" alt="Actualizar"></span>
+                <span>Generar Informe</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div id="statementContainer"></div>
+      </section>
+
+      <!-- Panel 5: BASE DE DATOS CLOUD & CSV (Solo Administrador) -->
+      <section id="panel-database" class="tab-content-panel d-none">
+        <div class="uiverse-card p-4">
+          <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3 pb-3 border-bottom">
+            <div>
+              <h2 class="h5 fw-bold text-dark mb-0">Administración de Base de Datos Cloud & CSV</h2>
+              <small class="text-muted">Base de datos en la nube (TextDB Cloud) con persistencia en tiempo real y copias de seguridad en archivos CSV.</small>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <a href="https://textdb.dev/data/bac_credomatic_gt_cuentas" target="_blank" rel="noopener noreferrer" class="uiverse-btn-outline uiverse-btn-sm">
+                <span class="svg-icon"><img src="../svg/shield.svg" alt="Nube"></span>
+                <span>Ver Cuentas en TextDB</span>
+              </a>
+              <a href="https://textdb.dev/data/bac_credomatic_gt_transacciones" target="_blank" rel="noopener noreferrer" class="uiverse-btn-outline uiverse-btn-sm">
+                <span class="svg-icon"><img src="../svg/shield.svg" alt="Nube"></span>
+                <span>Ver Transacciones en TextDB</span>
+              </a>
+              <button type="button" id="btnSyncCloud" class="uiverse-btn-primary uiverse-btn-sm">
+                <span class="svg-icon"><img src="../svg/refresh.svg" alt="Sincronizar"></span>
+                <span>Sincronizar Cloud & CSV</span>
+              </button>
+              <button type="button" onclick="DB.exportarCSV('cuentas')" class="uiverse-btn-outline uiverse-btn-sm">
+                <span class="svg-icon"><img src="../svg/download.svg" alt="Descarga"></span>
+                <span>Cuentas CSV (Copia)</span>
+              </button>
+              <button type="button" onclick="DB.exportarCSV('transacciones')" class="uiverse-btn-outline uiverse-btn-sm">
+                <span class="svg-icon"><img src="../svg/download.svg" alt="Descarga"></span>
+                <span>Transacciones CSV (Copia)</span>
+              </button>
+              <button type="button" id="btnResetDB" class="uiverse-btn-outline uiverse-btn-sm text-danger border-danger">
+                <span>Restablecer Datos</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="row g-3 mb-4">
+            <div class="col-md-4">
+              <div class="p-3 bg-light border rounded text-center">
+                <div class="text-muted small">Estado de la Nube</div>
+                <div class="fw-bold text-success fs-6 mt-1">
+                  <span class="svg-icon icon-sm text-success"><img src="../svg/check.svg" alt="OK"></span>
+                  TextDB Cloud Conectado
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="p-3 bg-light border rounded text-center">
+                <div class="text-muted small">Copia de Seguridad</div>
+                <div class="fw-bold text-dark fs-6 mt-1">Archivos CSV Locales en Disco</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="p-3 bg-light border rounded text-center">
+                <div class="text-muted small">Movimientos Registrados</div>
+                <div class="fw-bold text-danger fs-6 mt-1">5 movimientos por cada cuenta</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-4">
+            <div class="col-lg-6">
+              <h3 class="h6 fw-bold text-dark mb-2">Tabla de Cuentas (cuentas.csv / TextDB)</h3>
+              <pre id="csvCuentasPre" class="p-3 bg-light border rounded small font-monospace" style="max-height: 250px; overflow-y: auto;"></pre>
+            </div>
+            <div class="col-lg-6">
+              <h3 class="h6 fw-bold text-dark mb-2">Historial de Transacciones (transacciones.csv / TextDB)</h3>
+              <pre id="csvTransaccionesPre" class="p-3 bg-light border rounded small font-monospace" style="max-height: 250px; overflow-y: auto;"></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="bac-footer">
+    <div class="container text-center text-muted small">
+      &copy; 2026 BAC Credomatic. Plataforma de Banca en Línea. Transacciones seguras y supervisadas.
+    </div>
+  </footer>
+
+  <script src="../js/db.js"></script>
+  <script src="../js/banca.js"></script>
+</body>
+</html>

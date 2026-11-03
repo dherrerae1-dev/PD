@@ -1,0 +1,12 @@
+# Dependencias y logs
+node_modules/
+*.log
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archivos de depuración y temporales
+test_suite.js
+
